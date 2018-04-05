@@ -33,14 +33,18 @@ const char* ha_pwd = "HA_PASSWORD";
 ha.setHAServer(ha_ip, ha_port);
 ha.setHAPassword(ha_pwd);
   
-// Optinal, but can use SHA1 fingerprint to confirm one is connecting to 
+// Optional, but can use SHA1 fingerprint to confirm one is connecting to 
 String fingerprint = "35 85 74 EF 67 35 A7 CE 40 69 50 F3 C0 F6 80 CF 80 3B 2E 19";
 ha.setFingerPrint(fingerprint);
 ```
 All the commands below do the same thing
+
 **Home Assistant**
+
 URL: "/api/services/light/turn_on" (HA -> Developer Tools -> Services -> Service)
+
 Component: "light.bedroom_light" (HA -> Developer Tools -> Services -> Entity)
+
 ```
     // 1. Send custom DATA to HA
     ha.sendCustomHAData("/api/services/light/turn_on", "{\"entity_id\":\"light.bedroom_light\"}");
@@ -51,7 +55,8 @@ Component: "light.bedroom_light" (HA -> Developer Tools -> Services -> Entity)
     ha.sendHALight(true);
 ```
 ```  
-    // 3. Set light on/off as bool and component is 2nd input, Send Light to HA // Will set tmpURL to "/api/services/light/turn_on"
+    // 3. Set light on/off as bool and component is 2nd input, Send Light to HA 
+    //        Will set tmpURL to "/api/services/light/turn_on"
     ha.sendHALight(true, "light.bedroom_light");
 ```
 ```  

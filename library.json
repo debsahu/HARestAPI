@@ -1,0 +1,13 @@
+{
+  "name": "HARestAPI",
+  "keywords": "twitter",
+  "description": "Library for talking to Home Assistant on ESP8266.",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/debsahu/HARestAPI.git"
+  },
+  "frameworks": "arduino",
+  "platforms": "espressif8266",
+  "version": "0.1"
+}

@@ -1,6 +1,9 @@
 # HARestAPI
 
-An Arduino library to talk to Home Assistant using [Rest API](https://www.home-assistant.io/developers/rest_api/) made for ESP8266. 
+An Arduino library to talk to Home Assistant using [Rest API](https://www.home-assistant.io/developers/rest_api/) made for ESP8266.
+
+[![HARestAPI](https://img.youtube.com/vi/XV_X3e7xwDE/0.jpg)](https://www.youtube.com/watch?v=XV_X3e7xwDE)
+
 
 ## Beta
 * Can do POST effectively and not GET (reply is too long for esp8266). Try using `sendGetHA(URL,Component)` and provide feedback.

@@ -31,7 +31,7 @@ In setup make sure to setup IP and port of HA server. Default is 8123 and if usi
 ```
 const char* ha_ip = "192.168.0.xxx";
 uint16_t ha_port = 8123;
-const char* ha_pwd = "HA_PASSWORD";
+const char* ha_pwd = "HA_PASSWORD"; //long-lived password. On HA, Profile > Long-Lived Access Tokens > Create Token
 
 ha.setHAServer(ha_ip, ha_port);
 ha.setHAPassword(ha_pwd);

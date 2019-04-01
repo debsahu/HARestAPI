@@ -72,24 +72,17 @@ String HARestAPI::sendGetHA(String URL, String message) {
   String posturl, replystr;
   
   if(_debug) { Serial.print("Requesting URL: "); Serial.println(URL); }
-  if(_passwordset) {
-	  posturl = "GET " + URL + " HTTP/1.1\r\n" +
-                 "Host: " + _serverip + "\r\n" +
-                 "User-Agent: ESP8266 Rest API Client\r\n" +
-                 "Accept: */*\r\n" +
-                 "x-ha-access: " + _password + "\r\n" +
-                 "Content-Type: application/json" + "\r\n" +
-                 "Content-Length: " + message.length() + "\r\n\r\n" + 
-                 message;
-  } else {
-	  posturl = "GET " + URL + " HTTP/1.1\r\n" +
-                 "Host: " + _serverip + "\r\n" +
-                 "User-Agent: ESP8266 Rest API Client\r\n" +
-                 "Accept: */*\r\n" +
-                 "Content-Type: application/json" + "\r\n" +
-                 "Content-Length: " + message.length() + "\r\n\r\n" + 
-                 message;
-  }
+
+  posturl =     "GET " + URL + " HTTP/1.1\r\n" +
+                "Host: " + _serverip + "\r\n" +
+                "User-Agent: ESP8266 Rest API Client\r\n" +
+                "Accept: */*\r\n";
+  if(_passwordset)
+    //posturl + = "x-ha-access: " + _password + "\r\n";               //legacy password
+    posturl + = "'Authorization': \"Bearer " + _password + "\"\r\n";  //long-lived password
+  posturl + =   "Content-Type: application/json" + "\r\n" +
+                "Content-Length: " + message.length() + "\r\n\r\n" + 
+                message;
 
   if(_debug) {  Serial.println("Sending: "); Serial.println(posturl); }
 	
@@ -155,24 +148,17 @@ bool HARestAPI::sendPostHA(String URL, String message) {
   String posturl, replystr;
   
   if(_debug) { Serial.print("Requesting URL: "); Serial.println(URL); }
-  if(_passwordset) {
-	  posturl = "POST " + URL + " HTTP/1.1\r\n" +
-                 "Host: " + _serverip + "\r\n" +
-                 "User-Agent: ESP8266 Rest API Client\r\n" +
-                 "Accept: */*\r\n" +
-                 "x-ha-access: " + _password + "\r\n" +
-                 "Content-Type: application/json" + "\r\n" +
-                 "Content-Length: " + message.length() + "\r\n\r\n" + 
-                 message;
-  } else {
-	  posturl = "POST " + URL + " HTTP/1.1\r\n" +
-                 "Host: " + _serverip + "\r\n" +
-                 "User-Agent: ESP8266 Rest API Client\r\n" +
-                 "Accept: */*\r\n" +
-                 "Content-Type: application/json" + "\r\n" +
-                 "Content-Length: " + message.length() + "\r\n\r\n" + 
-                 message;
-  }
+  
+  posturl =     "POST " + URL + " HTTP/1.1\r\n" +
+                "Host: " + _serverip + "\r\n" +
+                "User-Agent: ESP8266 Rest API Client\r\n" +
+                "Accept: */*\r\n";
+  if(_passwordset)
+    //posturl + = "x-ha-access: " + _password + "\r\n";               //legacy password
+    posturl + = "'Authorization': \"Bearer " + _password + "\"\r\n";  //long-lived password
+  posturl + =   "Content-Type: application/json" + "\r\n" +
+                "Content-Length: " + message.length() + "\r\n\r\n" + 
+                message;
 
   if(_debug) {  Serial.println("Sending: "); Serial.println(posturl); }
 	

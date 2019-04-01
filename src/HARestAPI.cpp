@@ -79,7 +79,7 @@ String HARestAPI::sendGetHA(String URL, String message) {
                 "Accept: */*\r\n";
   if(_passwordset)
     //posturl + = "x-ha-access: " + _password + "\r\n";               //legacy password
-    posturl + = "'Authorization': Bearer " + _password + "\r\n";  //long-lived password
+    posturl + = "Authorization: Bearer " + _password + "\r\n";  //long-lived password
   posturl + =   "Content-Type: application/json" + "\r\n" +
                 "Content-Length: " + message.length() + "\r\n\r\n" + 
                 message;
@@ -155,7 +155,7 @@ bool HARestAPI::sendPostHA(String URL, String message) {
                 "Accept: */*\r\n";
   if(_passwordset)
     //posturl + = "x-ha-access: " + _password + "\r\n";               //legacy password
-    posturl + = "'Authorization': Bearer " + _password + "\r\n";  //long-lived password
+    posturl + = "Authorization: Bearer " + _password + "\r\n";  //long-lived password
   posturl + =   "Content-Type: application/json" + "\r\n" +
                 "Content-Length: " + message.length() + "\r\n\r\n" + 
                 message;

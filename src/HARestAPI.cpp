@@ -71,11 +71,6 @@ void HARestAPI::setTimeOut(uint16_t TimeOut)
   _time_out = TimeOut;
 }
 
-void HARestAPI::setCACert(const char *CACert)
-{
-  wsclient->setCACert(CACert);
-}
-
 void HARestAPI::setComponent(String Component)
 {
   _component = Component;

@@ -27,7 +27,6 @@ public:
 	void setRGB(uint8_t, uint8_t, uint8_t);
 	void setDebugMode(bool);
 	void setTimeOut(uint16_t);
-	void setCACert(const char *);
 	void setComponent(String);
 	void setURL(String);
 	bool sendCustomHAData(String, String);

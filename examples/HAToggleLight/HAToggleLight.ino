@@ -1,4 +1,8 @@
+#ifdef ESP8266
 #include <ESP8266WiFi.h>
+#elif defined(ESP32)
+#include <WiFi.h>
+#endif
 #include <Bounce2.h>                     // https://github.com/thomasfredericks/Bounce2
 #include <HARestAPI.h>
 //#include "secret.h";

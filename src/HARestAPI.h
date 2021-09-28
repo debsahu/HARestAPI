@@ -4,10 +4,15 @@
 #include <Arduino.h>
 #include <WiFiClient.h>
 #include <WiFiClientSecure.h>
+#ifdef ESP8266
+#include <ESP8266HTTPClient.h>
+#else
+#include <HTTPClient.h>
+#endif
 
 class HARestAPI
 {
-  public:
+public:
 	/* Ask user to supply appropiate WiFiClient or WiFiClientSecure 
 	HARestAPI(void);
 	void useSSL(void);
@@ -19,8 +24,10 @@ class HARestAPI
 	void setHAServer(String, uint16_t, String);
 	void setHAPassword(String);
 	void setFingerPrint(String);
-    void setRGB(uint8_t, uint8_t, uint8_t);
+	void setRGB(uint8_t, uint8_t, uint8_t);
 	void setDebugMode(bool);
+	void setTimeOut(uint16_t);
+	void setCACert(const char *);
 	void setComponent(String);
 	void setURL(String);
 	bool sendCustomHAData(String, String);
@@ -38,40 +45,44 @@ class HARestAPI
 	bool sendHASwitch(bool, String);
 	bool sendHAAutomation(bool);
 	bool sendHAAutomation(bool, String);
-	String sendGetHA(String, String);
+	String sendGetHA(String);
+	String sendGetHA(void);
 
-  private:
-    WiFiClient *wclient;
-	WiFiClientSecure *wsclient;
-	
+private:
+	WiFiClient *wclient = nullptr;
+	WiFiClientSecure *wsclient = nullptr;
+	HTTPClient *http = nullptr;
+
 	/* Ask user to supply appropiate WiFiClient or WiFiClientSecure 
 	WiFiClient dwclient;
 	WiFiClientSecure dwsclient;
 	*/
-	
+
 	bool sendPostHA(String);
 	bool sendPostHA(String, String);
-	
-    String 
-	  _serverip,
-	  _password,
-	  _url = "/api/services/homeassistant/toggle",
-	  _component,
-	  _fingerprint;
-	  
-	uint8_t 
-	  _red = 255,
-	  _green = 255,
-	  _blue = 255;
-	  
+
+	String
+		_serverip,
+		_password,
+		_url = "/api/services/homeassistant/toggle",
+		_component,
+		_fingerprint;
+
+	uint8_t
+		_red = 255,
+		_green = 255,
+		_blue = 255;
+
 	uint16_t
-	  _port;
-	
+		_port,
+		_time_out = 0;
+
 	bool
-	  _passwordset = false,
-	  _rgbset = false,
-	  _debug = true,
-	  _ssl = false;
+		_passwordset = false,
+		_rgbset = false,
+		_debug = true,
+		_ssl = false,
+		_skip_sendurl = false;
 };
 
 #endif

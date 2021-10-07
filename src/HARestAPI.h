@@ -52,11 +52,6 @@ private:
 	WiFiClientSecure *wsclient = nullptr;
 	HTTPClient *http = nullptr;
 
-	/* Ask user to supply appropiate WiFiClient or WiFiClientSecure 
-	WiFiClient dwclient;
-	WiFiClientSecure dwsclient;
-	*/
-
 	bool sendPostHA(String);
 	bool sendPostHA(String, String);
 

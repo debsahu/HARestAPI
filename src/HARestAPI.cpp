@@ -14,14 +14,12 @@ void HARestAPI::useSSL(void) {
 HARestAPI::HARestAPI(WiFiClient &client)
 {
   this->wclient = &client;
-  this->http = new HTTPClient();
 }
 
 HARestAPI::HARestAPI(WiFiClientSecure &client)
 {
   _ssl = true;
   this->wsclient = &client;
-  this->http = new HTTPClient();
 }
 
 void HARestAPI::setHAServer(String HAServer)
@@ -89,6 +87,7 @@ void HARestAPI::setFingerPrint(String FingerPrint)
 String HARestAPI::sendGetHA(String URL)
 {
   String posturl, replystr;
+  this->http = new HTTPClient();
 
   if (_ssl)
   {
@@ -179,6 +178,7 @@ String HARestAPI::sendGetHA(String URL)
     Serial.println("==========");
     Serial.println("closing connection");
   }
+  delete http;
   return replystr;
 }
 
@@ -186,6 +186,7 @@ bool HARestAPI::sendPostHA(String URL, String message)
 {
   bool reply;
   String posturl, replystr;
+  this->http = new HTTPClient();
 
   if (_ssl)
   {
@@ -279,6 +280,7 @@ bool HARestAPI::sendPostHA(String URL, String message)
     Serial.println("==========");
     Serial.println("closing connection");
   }
+  delete http;
   return reply;
 }
 

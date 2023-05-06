@@ -317,6 +317,18 @@ bool HARestAPI::sendHAComponent(String URL, String Component)
   return sendPostHA(URL, Message);
 }
 
+bool HARestAPI::sendHAArea(String Component)
+{
+  String Message = "{\"area_id\":\"" + Component + "\"}";
+  return sendPostHA(_url, Message);
+}
+
+bool HARestAPI::sendHAArea(String URL , String Component)
+{
+  String Message = "{\"area_id\":\"" + Component + "\"}";
+  return sendPostHA(URL, Message);
+}
+
 bool HARestAPI::sendHAURL(String URL)
 {
   String Message = "{\"entity_id\":\"" + _component + "\"}";

@@ -82,3 +82,8 @@ Component: "light.bedroom_light" (HA -> Developer Tools -> Services -> Entity)
     ha.setComponent("light.bedroom_light");
     ha.sendHA();
 ```
+```  
+    // 8. Set URL and Send area to HA
+    ha.setURL("/api/services/light/turn_on");
+    ha.sendHAArea("bedroom");
+```

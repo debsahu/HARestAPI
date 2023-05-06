@@ -34,6 +34,8 @@ public:
 	bool sendHAURL(String);
 	bool sendHAComponent(String);
 	bool sendHAComponent(String, String);
+	bool sendHAArea(String);
+	bool sendHAArea(String, String);
 	bool sendHARGBLight(void);
 	bool sendHARGBLight(uint8_t, uint8_t, uint8_t);
 	bool sendHARGBLight(String);

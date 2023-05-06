@@ -86,6 +86,10 @@ void loop() {
     //ha.setURL("/api/services/light/turn_on");
     //ha.setComponent("light.bedroom_light");
     //ha.sendHA();
+    
+    // 8. Set URL and Send area to HA
+    //ha.setURL("/api/services/light/turn_on");
+    //ha.sendHAArea("bedroom");
   
     // Instead of Turn on light, lets toggle it
     ha.setURL("/api/services/light/toggle");

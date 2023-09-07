@@ -99,17 +99,7 @@ String HARestAPI::sendGetHA(String URL)
     }
     if ( _fingerprint.length() > 0)
     {
-      if (wsclient->verify(_fingerprint.c_str(), _serverip.c_str()))
-      {
-        if (_debug)
-          Serial.println("Certificate matches");
-      }
-      else
-      {
-        if (_debug)
-          Serial.println("Certificate doesn't match");
-        _skip_sendurl = true;
-      }
+      wsclient->setFingerprint(_fingerprint.c_str())
     }
     if (!_skip_sendurl)
     {
@@ -196,19 +186,9 @@ bool HARestAPI::sendPostHA(String URL, String message)
       Serial.print("Connecting: ");
       Serial.println(posturl);
     }
-    if ( _fingerprint.length() > 0)
+    if ( _fingerprint.length() > 0 )
     {
-      if (wsclient->verify(_fingerprint.c_str(), _serverip.c_str()))
-      {
-        if (_debug)
-          Serial.println("Certificate matches");
-      }
-      else
-      {
-        if (_debug)
-          Serial.println("Certificate doesn't match");
-        _skip_sendurl = true;
-      }
+      wsclient-> setFingerprint(_fingerprint.c_str())
     }
     if (!_skip_sendurl)
     {

@@ -9,5 +9,5 @@
   },
   "frameworks": "arduino",
   "platforms": [ "espressif8266", "espressif32", "atmelsam" ],
-  "version": "0.3.1"
+  "version": "0.3.2"
 }

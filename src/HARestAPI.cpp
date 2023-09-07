@@ -99,7 +99,23 @@ String HARestAPI::sendGetHA(String URL)
     }
     if ( _fingerprint.length() > 0)
     {
-      wsclient->setFingerprint(_fingerprint.c_str())
+      #ifdef ESP8266
+      wsclient->setFingerprint(_fingerprint.c_str());
+      #elseif defined(ESP32)
+      if (wsclient->verify(_fingerprint.c_str(), _serverip.c_str()))
+      {
+        Serial.println("certificate matches");
+      }
+      else
+      {
+        Serial.println("certificate doesn't match");
+        _skip_sendurl = true;
+      }
+      #endif
+    }
+    else
+    {
+      wsclient->setInsecure();
     }
     if (!_skip_sendurl)
     {
@@ -188,7 +204,23 @@ bool HARestAPI::sendPostHA(String URL, String message)
     }
     if ( _fingerprint.length() > 0 )
     {
-      wsclient-> setFingerprint(_fingerprint.c_str())
+      #ifdef ESP8266
+      wsclient->setFingerprint(_fingerprint.c_str());
+      #elseif defined(ESP32)
+      if (wsclient->verify(_fingerprint.c_str(), _serverip.c_str()))
+      {
+        Serial.println("certificate matches");
+      }
+      else
+      {
+        Serial.println("certificate doesn't match");
+        _skip_sendurl = true;
+      }
+      #endif
+    }
+    else
+    {
+      wsclient->setInsecure();
     }
     if (!_skip_sendurl)
     {
